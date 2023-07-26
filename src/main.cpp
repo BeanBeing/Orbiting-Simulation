@@ -163,13 +163,15 @@ public:
       m_pos.x += m_velocity.x;
       m_pos.y += m_velocity.y;
 
+      // Update the position once calculations are done
+      m_cShape.setPosition(m_pos);
+
    }
 
    // Display the shape
    void render(sf::RenderWindow &window)
    {
-      // Sets position of shape upon displayed
-      m_cShape.setPosition(m_pos);
+      // Call window member function upon render call
       window.draw(m_cShape);
    }
 

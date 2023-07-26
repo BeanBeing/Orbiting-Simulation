@@ -22,7 +22,7 @@ public:
    {
       m_cShape.setPosition(m_pos);
       m_cShape.setFillColor(sf::Color::Yellow);
-      m_cShape.setRadius(8);
+      m_cShape.setRadius(10);
    }
 
    /**--SETTERS--**/
@@ -107,7 +107,7 @@ public:
    {
       m_cShape.setPosition(m_pos);
       m_cShape.setFillColor(sf::Color::Blue);
-      m_cShape.setRadius(4);
+      m_cShape.setRadius(6);
    }
 
    // Manually change the color of a Planet
@@ -166,13 +166,13 @@ public:
       m_pos.x += m_velocity.x;
       m_pos.y += m_velocity.y;
 
-      if(m_pos.x < -150 || m_pos.x > 800)
+      if(m_pos.x < -150 || m_pos.x > 1000)
       {
          m_velocity.x *= -1;
          m_cShape.setPosition(m_pos);
       }
       
-      if(m_pos.y < -120 || m_pos.y > 600)
+      if(m_pos.y < -120 || m_pos.y > 800)
       {
          m_velocity.y *= -1;
          m_cShape.setPosition(m_pos);
@@ -195,12 +195,12 @@ public:
 
 int main()
 {
-   sf::RenderWindow window(sf::VideoMode(640, 480), "Planet Simulation");
+   sf::RenderWindow window(sf::VideoMode(800, 600), "Planet Simulation");
 
-   GravitySource sun(320, 240, 420);
+   GravitySource sun(400, 300, 620);
 
-   Planet planet1(220, 140, 1.2, -1.2);
-   Planet planet2(250, 100, 1.0, -1.0);
+   Planet planet1(220, 140, 1.0, -1.0);
+   Planet planet2(250, 100, 1.2, -1.0);
    Planet planet3(200, 270, 0.008, -1.8);
 
    /**--Planets Independent Attribute--**/
@@ -265,9 +265,9 @@ int main()
          /**--------RESET SCENE--------**/
          if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
          {
-            sun.set_pos(320, 240);
-            planet1.setShapePos_vel(220, 140, 1.2, -1.2);
-            planet2.setShapePos_vel(250, 100, 1.0, -1.0);
+            sun.set_pos(400, 300);
+            planet1.setShapePos_vel(220, 140, 1.0, -1.0);
+            planet2.setShapePos_vel(250, 100, 1.2, -1.0);
             planet3.setShapePos_vel(200, 270, 0.008, -1.8);
          }
       }

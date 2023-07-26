@@ -1,0 +1,8 @@
+Controls:
+
+UP-key:    Move up
+Down-key:  Move down
+Left-key:  Move left
+Right-key: Move right
+
+R-key:     Move the objects to its starting position

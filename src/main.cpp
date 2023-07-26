@@ -22,7 +22,7 @@ public:
    {
       m_cShape.setPosition(m_pos);
       m_cShape.setFillColor(sf::Color::Yellow);
-      m_cShape.setRadius(12);
+      m_cShape.setRadius(8);
    }
 
    /**--SETTERS--**/
@@ -107,7 +107,7 @@ public:
    {
       m_cShape.setPosition(m_pos);
       m_cShape.setFillColor(sf::Color::Blue);
-      m_cShape.setRadius(8);
+      m_cShape.setRadius(4);
    }
 
    // Manually change the color of a Planet
@@ -157,11 +157,26 @@ public:
       float acceleration_x = normalized_x * obj.get_strength() * inverse_square_law;
       float acceleration_y = normalized_y * obj.get_strength() * inverse_square_law;
 
+      
+
       m_velocity.x += acceleration_x;
       m_velocity.y += acceleration_y;
 
+
       m_pos.x += m_velocity.x;
       m_pos.y += m_velocity.y;
+
+      if(m_pos.x < -150 || m_pos.x > 800)
+      {
+         m_velocity.x *= -1;
+         m_cShape.setPosition(m_pos);
+      }
+      
+      if(m_pos.y < -120 || m_pos.y > 600)
+      {
+         m_velocity.y *= -1;
+         m_cShape.setPosition(m_pos);
+      }
 
       // Update the position once calculations are done
       m_cShape.setPosition(m_pos);
@@ -180,13 +195,13 @@ public:
 
 int main()
 {
-   sf::RenderWindow window(sf::VideoMode(800, 600), "Planet Simulation");
+   sf::RenderWindow window(sf::VideoMode(640, 480), "Planet Simulation");
 
-   GravitySource sun(400, 300, 1400);
+   GravitySource sun(320, 240, 420);
 
-   Planet planet1(400, 600, 2, 0);
-   Planet planet2(450, 200, 3, 1.2);
-   Planet planet3(400, 540, 2.4, 0);
+   Planet planet1(220, 140, 1.2, -1.2);
+   Planet planet2(250, 100, 1.0, -1.0);
+   Planet planet3(200, 270, 0.008, -1.8);
 
    /**--Planets Independent Attribute--**/
    planet2.setShapeColor(sf::Color::Magenta);
@@ -250,10 +265,10 @@ int main()
          /**--------RESET SCENE--------**/
          if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
          {
-            sun.set_pos(400, 300);
-            planet1.setShapePos_vel(400, 600, 2, 0);
-            planet2.setShapePos_vel(450, 200, 3, 1.2);
-            planet3.setShapePos_vel(400, 540, 2.4, 0);
+            sun.set_pos(320, 240);
+            planet1.setShapePos_vel(220, 140, 1.2, -1.2);
+            planet2.setShapePos_vel(250, 100, 1.0, -1.0);
+            planet3.setShapePos_vel(200, 270, 0.008, -1.8);
          }
       }
 
